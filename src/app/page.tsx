@@ -1,10 +1,11 @@
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Experience} from "@/components/sections/Experience";
+import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
 import { Credentials } from "@/components/sections/Credentials";
 import { Projects } from "@/components/sections/Projects";
 import { GitHubStats } from "@/components/sections/GitHubStats";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Credentials />
       <Projects />
       <GitHubStats />
+      <Testimonials />
       <Contact />
     </>
   );
