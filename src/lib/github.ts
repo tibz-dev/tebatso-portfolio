@@ -59,7 +59,6 @@ export async function getGitHubProfile(): Promise<GitHubProfile | null> {
 
     const totalStars = repos.reduce((sum, r) => sum + r.stars, 0);
 
-    // Contribution calendar requires GraphQL — not available via REST
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
