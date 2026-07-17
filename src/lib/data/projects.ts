@@ -47,7 +47,7 @@ export const PROJECTS: Project[] = [
       "Application submission support on the client's behalf",
       "Dedicated job listings portal with account login",
     ],
-    coverImage: "images/eazylinkjobs.png",
+    coverImage: "/images/eazylinkjobs.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://eazylink.co.za",

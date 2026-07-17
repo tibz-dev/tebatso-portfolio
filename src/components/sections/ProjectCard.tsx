@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import {ExternalLink, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { PROJECT_CATEGORIES } from "@/types";
 import type { Project } from "@/types";
@@ -35,10 +36,12 @@ export function ProjectCard({
     >
       <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-signal)]/10">
         {project.coverImage ? (
-          <img
+          <Image
             src={project.coverImage}
             alt={project.title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
           />
         ) : (
           <span className="font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-faint)]">

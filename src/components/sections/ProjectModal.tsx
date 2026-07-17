@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X,ExternalLink } from "lucide-react";
 import { FaGithub} from "react-icons/fa";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Project } from "@/types";
 
@@ -158,11 +159,13 @@ export function ProjectModal({
                 <ModalSection label="Gallery">
                   <div className="grid gap-3 sm:grid-cols-2">
                     {project.gallery.map((src) => (
-                      <img
+                      <Image
                         key={src}
                         src={src}
                         alt={`${project.title} screenshot`}
-                        className="w-full rounded-xl"
+                        width={600}
+                        height={400}
+                        className="rounded-xl w-full h-auto"
                       />
                     ))}
                   </div>
