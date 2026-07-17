@@ -105,7 +105,7 @@ export const PROJECTS: Project[] = [
       "Shop and product category pages",
       "Contact and newsletter capture",
     ],
-    coverImage: "/images/devsolutionsstore.png",
+    coverImage: "/images/devsolutionsshop.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://www.devsolutionsza.shop/",
