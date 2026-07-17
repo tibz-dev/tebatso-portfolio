@@ -9,10 +9,8 @@ export const PROJECTS: Project[] = [
     overview:
       "An AI-powered application that closes the gap between a candidate's CV and a specific job description — scoring compatibility, surfacing gaps, and generating a tailored cover letter, all in one flow.",
     problem:
-      // DRAFT
       "Most job seekers have no visibility into how their CV performs against Applicant Tracking Systems, and tailoring a CV and cover letter to every application is time-consuming to do well.",
     solution:
-      // DRAFT
       "Built an application that parses a CV, compares it directly against a target job description, calculates an ATS compatibility score, and uses OpenAI's API to generate specific improvement suggestions and a personalized cover letter.",
     architecture:
       "A full-stack application with a document-parsing pipeline for CV ingestion, a comparison engine that scores CV content against job description keywords and requirements, and an OpenAI integration layer that generates structured suggestions and cover letter drafts from the comparison output.",
@@ -54,7 +52,7 @@ export const PROJECTS: Project[] = [
       "Integrated store and web design service line",
       "Multi-region operation (Cape Town & Dubai)",
     ],
-    coverImage: undefined,
+    coverImage: "/images/karibaworld.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://karibaworldjobs.com/",
@@ -73,14 +71,14 @@ export const PROJECTS: Project[] = [
       "Built a service platform offering tiered packages (Matriculant, New Graduate, Professional, Corporate) covering CV writing, mentorship, application submissions on the client's behalf, and academic/career advisory — backed by a separate job listings portal for browsing verified roles.",
     architecture:
       "Marketing site with service package tiers and a request/consultation form, linked to a dedicated job board application for listings and account login — specific technical architecture to be detailed.",
-    technologies: ["Web Development", "Job Board", "Client Portal"],
+    technologies: ["Node.js", "Clerk", "Tailwind CSS", "React", "Cloudinary", "TypeScript", "Express.js","Responsive Design"],
     features: [
       "Tiered service packages by audience (student, graduate, professional, corporate)",
       "Mentor-matching by career field",
       "Application submission support on the client's behalf",
       "Dedicated job listings portal with account login",
     ],
-    coverImage: undefined,
+    coverImage: "images/eazylinkjobs.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://eazylink.co.za",
@@ -90,25 +88,24 @@ export const PROJECTS: Project[] = [
     id: "dev-solutions-store",
     category: "web-app",
     title: "Dev Solutions — E-commerce Store",
-    tagline: "A tech and electronics storefront built on Next.js.",
+    tagline: "A tech and electronics storefront built on MERN",
     overview:
-      "A Next.js e-commerce storefront for tech products — headphones, gaming consoles, laptops, and accessories — built with a product carousel, featured collections, and a contact/newsletter flow.",
+      "A MERN e-commerce storefront for tech products — headphones, gaming consoles, laptops, and accessories — built with a product carousel, featured collections, and a contact/newsletter flow.",
     problem:
       // DRAFT
       "Tech retailers need a fast, modern storefront that can showcase promotions and featured products without the overhead of a heavyweight e-commerce platform.",
     solution:
-      "Built a Next.js-based storefront with server-rendered product pages, an image-optimized product carousel, featured product sections, and a lightweight contact/newsletter capture flow.",
+      "Built a MERN-based storefront with server-rendered product pages, an image-optimized product carousel, featured product sections, and a lightweight contact/newsletter capture flow.",
     architecture:
-      // DRAFT — confirm exact stack (Next.js confirmed from build output; cart/checkout/payment stack to be detailed)
-      "Next.js frontend with the App Router and Next/Image for optimized product imagery — backend/checkout implementation details to be added.",
-    technologies: ["Next.js", "React", "E-commerce", "Responsive Design"],
+      "MERN frontend with the App Router and Next/Image for optimized product imagery — backend/checkout implementation details to be added.",
+    technologies: ["Node.js", "React", "Express.js","MongoDb", "Responsive Design"],
     features: [
       "Promotional hero carousel with featured deals",
       "Featured product sections with image optimization",
       "Shop and product category pages",
       "Contact and newsletter capture",
     ],
-    coverImage: undefined,
+    coverImage: "/images/devsolutionsstore.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://www.devsolutionsza.shop/",
@@ -119,8 +116,7 @@ export const PROJECTS: Project[] = [
     category: "website",
     title: "MAKH Safety Solutions",
     tagline: "Occupational health & safety consulting, online.",
-    // NOTE: this site renders client-side, so I only had the meta description to work from —
-    // confirm/expand this copy once you can share more detail
+
     overview:
       "A business site for MAKH Safety Solutions, an occupational health and safety (OHS) consulting practice serving South African businesses — covering workplace safety and compliance services.",
     problem:
@@ -128,12 +124,12 @@ export const PROJECTS: Project[] = [
     solution:
       "Built a business website presenting MAKH Safety's OHS consulting services and compliance offering.",
     architecture: "Details to be added.",
-    technologies: ["Web Development"],
+    technologies: ["REACT", "Next.js", "Tailwind CSS", "Responsive Design"],
     features: [
       "Service overview for OHS consulting",
       "Compliance-focused business presentation",
     ],
-    coverImage: undefined,
+    coverImage: "/images/makhsafety.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://www.makhsafety.co.za/",
@@ -144,7 +140,6 @@ export const PROJECTS: Project[] = [
     category: "website",
     title: "Nolly M Wayleave Services",
     tagline: "Wayleave approvals and construction project services across South Africa.",
-    // NOTE: client-side rendered site — copy drafted from meta description only, confirm details
     overview:
       "A business site for Nolly M Wayleave Services, offering wayleave, construction, and project execution services across South Africa, with an emphasis on fast approvals and compliance.",
     problem:
@@ -152,12 +147,12 @@ export const PROJECTS: Project[] = [
     solution:
       "Built a business website presenting Nolly M Wayleave's service offering — wayleave processing, construction, and project services.",
     architecture: "Details to be added.",
-    technologies: ["Web Development"],
+    technologies: ["REACT", "Next.js", "Tailwind CSS", "Responsive Design"],
     features: [
       "Service overview for wayleave and construction",
       "Compliance and fast-approval positioning",
     ],
-    coverImage: undefined,
+    coverImage: "/images/nollymwayleave.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://www.nollymwayleave.co.za/",
@@ -183,7 +178,7 @@ export const PROJECTS: Project[] = [
       "4-step process explainer (order → invoice → dispatch → delivery)",
       "About, pricing, and contact pages",
     ],
-    coverImage: undefined,
+    coverImage: "/images/allthingshygiene.png",
     gallery: [],
     githubUrl: undefined,
     liveUrl: "https://www.allthingshygiene.com/",
