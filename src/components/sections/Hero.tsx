@@ -1,8 +1,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { ArchitectureGraph } from "./ArchitectureGraph";
+import { Greeting } from "./Greeting";
 
 const fadeUp: Variants = {
   hidden: {
@@ -43,15 +45,28 @@ export function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-4xl">
-        <motion.p
+        <motion.div
           custom={0}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="mb-6 font-[family-name:var(--font-mono)] text-sm tracking-wide text-[var(--color-signal)]"
+          className="flex items-center gap-4 mb-6"
         >
-          Software Engineer · South Africa
-        </motion.p>
+          <div className="relative w-14 h-14 rounded-full overflow-hidden glass shrink-0">
+            <Image
+              src="/images/profile.jpg"
+              alt="Tebatso Seshayi"
+              fill
+              sizes="56px"
+              className="object-cover"
+              priority
+            />
+          </div>
+          <div>
+            <Greeting />
+            <p className="text-sm text-[var(--color-text-muted)]">Software Engineer · South Africa</p>
+          </div>
+        </motion.div>
 
         <motion.h1
           custom={1}
