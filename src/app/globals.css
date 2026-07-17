@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens */
+  --color-base: #08080b;
+  --color-surface: #131316;
+  --color-surface-raised: #1c1c21;
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+
+  --color-text-primary: #f5f5f7;
+  --color-text-muted: #9a9aa4;
+  --color-text-faint: #5c5c64;
+
+  --color-accent: #5b63d3;
+  --color-accent-soft: #7b82e0;
+  --color-signal: #42c8b7;
+
+  /* Type */
+  --font-display: "Geist", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "Geist Mono", "SF Mono", monospace;
+
+  /* Radii — used consistently for the glass/iOS feel */
+  --radius-glass: 1.25rem;
+  --radius-pill: 999px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-glass-border);
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  /* Respect reduced motion — required by the quality floor */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--color-glass-border);
+  }
+}
