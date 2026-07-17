@@ -2,37 +2,6 @@ import type { Project } from "@/types";
 
 export const PROJECTS: Project[] = [
   {
-    id: "ai-job-reviewer",
-    category: "web-app",
-    title: "AI Job Reviewer",
-    tagline: "AI that reads your CV the way an ATS does — and tells you what to fix.",
-    overview:
-      "An AI-powered application that closes the gap between a candidate's CV and a specific job description — scoring compatibility, surfacing gaps, and generating a tailored cover letter, all in one flow.",
-    problem:
-      "Most job seekers have no visibility into how their CV performs against Applicant Tracking Systems, and tailoring a CV and cover letter to every application is time-consuming to do well.",
-    solution:
-      "Built an application that parses a CV, compares it directly against a target job description, calculates an ATS compatibility score, and uses OpenAI's API to generate specific improvement suggestions and a personalized cover letter.",
-    architecture:
-      "A full-stack application with a document-parsing pipeline for CV ingestion, a comparison engine that scores CV content against job description keywords and requirements, and an OpenAI integration layer that generates structured suggestions and cover letter drafts from the comparison output.",
-    technologies: ["OpenAI API", "TypeScript", "Full Stack", "Document Parsing", "REST APIs"],
-    features: [
-      "CV parsing and structured extraction",
-      "Job description comparison engine",
-      "ATS compatibility scoring",
-      "AI-generated improvement suggestions",
-      "Personalized cover letter generation",
-    ],
-    coverImage: undefined,
-    gallery: [],
-    githubUrl: undefined,
-    liveUrl: undefined,
-    futureImprovements: [
-      "Support for multiple CV formats (LinkedIn export, PDF, DOCX)",
-      "Historical tracking of ATS score improvements over time",
-      "Browser extension for one-click job description import",
-    ],
-  },
-  {
     id: "kariba-world-jobs",
     category: "web-app",
     title: "KaribaWorld — Automated Job Application Platform",
@@ -110,6 +79,37 @@ export const PROJECTS: Project[] = [
     githubUrl: undefined,
     liveUrl: "https://www.devsolutionsza.shop/",
     futureImprovements: [],
+  },
+    {
+    id: "ai-job-reviewer",
+    category: "web-app",
+    title: "AI Job Reviewer",
+    tagline: "AI that reads your CV the way an ATS does — and tells you what to fix.",
+    overview:
+      "An AI-powered application that closes the gap between a candidate's CV and a specific job description — scoring compatibility, surfacing gaps, and generating a tailored cover letter, all in one flow.",
+    problem:
+      "Most job seekers have no visibility into how their CV performs against Applicant Tracking Systems, and tailoring a CV and cover letter to every application is time-consuming to do well.",
+    solution:
+      "Built an application that parses a CV, compares it directly against a target job description, calculates an ATS compatibility score, and uses OpenAI's API to generate specific improvement suggestions and a personalized cover letter.",
+    architecture:
+      "A full-stack application with a document-parsing pipeline for CV ingestion, a comparison engine that scores CV content against job description keywords and requirements, and an OpenAI integration layer that generates structured suggestions and cover letter drafts from the comparison output.",
+    technologies: ["OpenAI API", "TypeScript", "Full Stack", "Document Parsing", "REST APIs"],
+    features: [
+      "CV parsing and structured extraction",
+      "Job description comparison engine",
+      "ATS compatibility scoring",
+      "AI-generated improvement suggestions",
+      "Personalized cover letter generation",
+    ],
+    coverImage: undefined,
+    gallery: [],
+    githubUrl: undefined,
+    liveUrl: undefined,
+    futureImprovements: [
+      "Support for multiple CV formats (LinkedIn export, PDF, DOCX)",
+      "Historical tracking of ATS score improvements over time",
+      "Browser extension for one-click job description import",
+    ],
   },
   {
     id: "makh-safety",
