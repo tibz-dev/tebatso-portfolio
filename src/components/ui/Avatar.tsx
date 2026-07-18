@@ -3,8 +3,19 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export function Avatar({ src, name, size = 64 }: { src: string; name: string; size?: number }) {
+interface AvatarProps {
+  src: string;
+  name: string;
+  size?: number;
+}
+
+export function Avatar({
+  src,
+  name,
+  size = 64,
+}: AvatarProps) {
   const [failed, setFailed] = useState(false);
+
   const initials = name
     .split(" ")
     .map((w) => w[0])
@@ -13,7 +24,7 @@ export function Avatar({ src, name, size = 64 }: { src: string; name: string; si
 
   return (
     <div
-      className="relative rounded-full overflow-hidden glass shrink-0 flex items-center justify-center"
+      className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-full glass"
       style={{ width: size, height: size }}
     >
       {!failed ? (
