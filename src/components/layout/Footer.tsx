@@ -27,8 +27,7 @@ export function Footer() {
             </p>
 
             <p className="text-sm text-[var(--color-text-faint)] mt-2 max-w-xs">
-              Software Engineer building enterprise systems and AI-powered
-              software.
+              Software Engineer building enterprise systems, intelligent digital experiences, scalable cloud applications, and modern software solutions engineered for performance, reliability, and long-term impact.
             </p>
           </div>
 
