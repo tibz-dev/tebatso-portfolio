@@ -1,11 +1,15 @@
 import type { NextConfig } from "next";
-import path from "path";
+
+const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["pdfjs-dist"],
-  turbopack: {
-    root: path.join(__dirname),
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
   },
+  basePath: isProd ? "/tebatso-portfolio" : "",
+  assetPrefix: isProd ? "/tebatso-portfolio/" : "",
 };
 
 export default nextConfig;
