@@ -67,7 +67,7 @@ export function FloatingNav() {
           href="/resume"
           className="hidden lg:inline-flex items-center whitespace-nowrap rounded-[var(--radius-pill)] bg-[var(--color-accent)] px-4 py-1.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-soft)] transition-colors ml-2 shrink-0"
         >
-          Resume
+          CV
         </a>
 
         {/* Mobile Menu Button */}
