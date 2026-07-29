@@ -5,7 +5,7 @@ export const RESUME_SUMMARY: ResumeSummary = {
   title: "Software Engineer · Full Stack Developer",
   location: "Pretoria, Gauteng, South Africa",
   summary:
-    "Final-year BSc Information Technology student and software engineer focused on enterprise-grade backend architecture — Clean Architecture, CQRS, domain-driven patterns — paired with modern, considered interface design. Building toward a career as an AI Engineer and Cloud Architect.",
+    "Final-year BSc Information Technology student and Software Engineer with professional experience building enterprise-grade applications using ASP.NET Core (.NET 8), Angular, C#, and SQL Server. Passionate about designing scalable, maintainable systems using Clean Architecture, CQRS, Domain-Driven Design, and modern cloud-native practices. Experienced in developing secure REST APIs, full-stack applications, and modular software solutions within Agile teams. Building toward a career as an AI Engineer and Cloud Architect, with a strong interest in machine learning, distributed systems, and cloud infrastructure.",
   contacts: [
     { label: "Email", value: "seshayit@gmail.com", href: "mailto:seshayit@gmail.com" },
     { label: "Location", value: "Pretoria, Gauteng, South Africa" },
