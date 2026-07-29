@@ -1,8 +1,8 @@
-markdown# Tebatso Seshayi — Portfolio
+Tebatso Seshayi — Portfolio
 
 A personal portfolio and virtual CV built to showcase enterprise-grade software engineering skills, real client project work, and career trajectory toward AI Engineering and Cloud Architecture.
 
-**Live site:** [tebatso.dev](https://tebatso.dev) <!-- TODO: update once your domain is live, or replace with your Vercel URL -->
+**Live site:** [tebatsoseshayi.co.za](https://tebatsoseshayi.co.za) 
 
 ---
 
