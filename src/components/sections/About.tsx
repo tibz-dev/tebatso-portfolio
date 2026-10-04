@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 const OBJECTIVES = [
-  "Build software that changes lives",
-  "Ship enterprise-grade applications",
-  "Work at the edge of cloud & AI architecture",
-  "Grow into an AI Engineer & Cloud Architect",
-  "Build software businesses of my own",
+  "Build software that solves real problems",
+  "Ship reliable enterprise-grade applications",
+  "Deepen my expertise in cloud architecture",
+  "Grow into AI engineering through production projects",
+  "Build sustainable software products of my own",
   "Contribute meaningfully to open source",
 ];
 
@@ -26,30 +26,29 @@ export function About() {
             About
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--color-text-primary)] leading-tight">
-            I build systems that hold up under real use — and interfaces
-            people actually enjoy.
+            I care about software that is maintainable behind the UI and useful
+            in front of it.
           </h2>
 
           <div className="mt-8 space-y-5 text-[var(--color-text-muted)] leading-relaxed">
             <p>
               I'm a South African software engineer and full-stack developer,
-              currently in my final year of a BSc in Information Technology at
-              North-West University. My focus sits at the intersection of
-              enterprise backend architecture — clean architecture, CQRS,
-              domain-driven patterns — and modern, considered interface design.
+              currently completing a BSc in Information Technology at
+              North-West University. My strongest day-to-day stack is C#,
+              ASP.NET Core, Angular, TypeScript, Entity Framework Core, and SQL
+              Server.
             </p>
             <p>
-              I care about the parts most people skip: proper error handling,
-              scalable folder structures, code that a teammate can read in a
-              year without messaging me first. Software should be both
-              functional and beautiful, and I don't treat those as
-              competing goals.
+              I enjoy backend and application architecture: REST APIs, Clean
+              Architecture, CQRS with MediatR, data modelling, migrations,
+              service abstractions, and the practical work needed to make
+              full-stack features reliable in production.
             </p>
             <p>
-              Outside of shipped work, I'm deep in cloud platforms — Azure and
-              Oracle Cloud Infrastructure — and AI-powered tooling, with the
-              long-term goal of becoming one of Africa's leading software
-              engineers.
+              I also build independent products and client applications across
+              .NET, Java/Spring Boot, React/Next.js, and desktop development.
+              Cloud and AI are areas I'm deliberately growing into through
+              projects rather than treating them as titles I've already earned.
             </p>
           </div>
         </motion.div>
