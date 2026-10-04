@@ -4,8 +4,9 @@ import { ArrowUpRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog — Tebatso Seshayi",
-  description: "Writing on software engineering, AI, cloud architecture, and career growth.",
+  title: "Blog",
+  description:
+    "Writing on software engineering, backend development, cloud, AI, and career growth.",
 };
 
 export default function BlogIndexPage() {
@@ -22,7 +23,9 @@ export default function BlogIndexPage() {
         </h1>
 
         {posts.length === 0 ? (
-          <p className="text-sm text-[var(--color-text-faint)]">No posts yet — check back soon.</p>
+          <p className="text-sm text-[var(--color-text-faint)]">
+            No posts yet — check back soon.
+          </p>
         ) : (
           <div className="space-y-3">
             {posts.map((post) => (
