@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color tokens */
   --color-base: #08080b;
   --color-surface: #131316;
   --color-surface-raised: #1c1c21;
@@ -16,12 +15,10 @@
   --color-accent-soft: #7b82e0;
   --color-signal: #42c8b7;
 
-  /* Type */
-  --font-display: "Geist", "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "Geist Mono", "SF Mono", monospace;
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
-  /* Radii — used consistently for the glass/iOS feel */
   --radius-glass: 1.25rem;
   --radius-pill: 999px;
 }
@@ -36,6 +33,7 @@
     color: var(--color-text-primary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -43,7 +41,6 @@
     color: white;
   }
 
-  /* Respect reduced motion — required by the quality floor */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -67,9 +64,7 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
-}
 
-@layer utilities {
   .print\:glass-none {
     background: none;
     backdrop-filter: none;
@@ -83,9 +78,11 @@
     background: white;
     color: black;
   }
+
   nav, header, footer {
     display: none !important;
   }
+
   @page {
     margin: 1.5cm;
   }
