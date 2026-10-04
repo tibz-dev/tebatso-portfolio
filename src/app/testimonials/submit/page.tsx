@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { testimonialSchema, type TestimonialFormData } from "@/lib/validation/testimonial";
+import { toast } from "sonner";
+import type { TestimonialFormData } from "@/lib/validation/testimonial";
 import { StarRatingInput } from "@/components/sections/StarRatingInput";
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function SubmitTestimonialPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
@@ -19,23 +21,32 @@ export default function SubmitTestimonialPage() {
     reset,
     formState: { errors },
   } = useForm<TestimonialFormData>({
-    resolver: zodResolver(testimonialSchema),
-    defaultValues: { rating: 5 },
+    defaultValues: {
+      rating: 5,
+      website: "",
+    },
   });
 
   async function onSubmit(data: TestimonialFormData) {
     setStatus("sending");
+
     try {
       const res = await fetch("/api/testimonial", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Failed");
+
+      if (!res.ok) {
+        throw new Error("Failed");
+      }
+
       setStatus("sent");
       reset();
+      toast.success("Thanks — your testimonial was submitted for review.");
     } catch {
       setStatus("idle");
+      toast.error("Something went wrong. Please try again.");
     }
   }
 
@@ -53,8 +64,9 @@ export default function SubmitTestimonialPage() {
           Leave a testimonial
         </h1>
         <p className="text-sm text-[var(--color-text-muted)] mb-10 leading-relaxed">
-          If we've worked together, I'd really appreciate a few honest words. Submissions are
-          reviewed before appearing on the site — they won't be published automatically.
+          If we've worked together, I'd really appreciate a few honest words.
+          Submissions are reviewed before appearing on the site — they won't be
+          published automatically.
         </p>
 
         {status === "sent" ? (
@@ -63,75 +75,212 @@ export default function SubmitTestimonialPage() {
             animate={{ opacity: 1, y: 0 }}
             className="glass rounded-[var(--radius-glass)] p-8 text-center"
           >
-            <CheckCircle2 size={28} className="mx-auto text-[var(--color-signal)] mb-4" />
-            <p className="text-sm text-[var(--color-text-primary)] font-medium">Thank you!</p>
+            <CheckCircle2
+              size={28}
+              className="mx-auto text-[var(--color-signal)] mb-4"
+            />
+            <p className="text-sm text-[var(--color-text-primary)] font-medium">
+              Thank you!
+            </p>
             <p className="text-sm text-[var(--color-text-muted)] mt-2">
               I've received your testimonial and will review it shortly.
             </p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+            <div
+              className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+              aria-hidden="true"
+            >
+              <label htmlFor="testimonial-website">Website</label>
+              <input
+                id="testimonial-website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                {...register("website")}
+              />
+            </div>
+
             <div>
-              <label className="block text-xs text-[var(--color-text-faint)] mb-2">Your rating</label>
+              <span className="block text-xs text-[var(--color-text-faint)] mb-2">
+                Your rating
+              </span>
               <Controller
                 name="rating"
                 control={control}
-                render={({ field }) => <StarRatingInput value={field.value} onChange={field.onChange} />}
+                rules={{
+                  min: { value: 1, message: "Choose a rating" },
+                  max: { value: 5, message: "Choose a rating" },
+                }}
+                render={({ field }) => (
+                  <StarRatingInput
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
+              {errors.rating && (
+                <p className="text-xs text-red-400 mt-1">
+                  {errors.rating.message}
+                </p>
+              )}
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs text-[var(--color-text-faint)] mb-1.5">Name</label>
+                <label
+                  htmlFor="testimonial-name"
+                  className="block text-xs text-[var(--color-text-faint)] mb-1.5"
+                >
+                  Name
+                </label>
                 <input
-                  {...register("name")}
+                  id="testimonial-name"
+                  type="text"
+                  autoComplete="name"
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Name must be at least 2 characters",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Name must be 100 characters or fewer",
+                    },
+                  })}
                   className="w-full glass rounded-xl px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-[var(--color-accent)] transition-shadow"
                   placeholder="Your name"
                 />
-                {errors.name && <p className="text-xs text-red-400 mt-1">{errors.name.message}</p>}
+                {errors.name && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
+
               <div>
-                <label className="block text-xs text-[var(--color-text-faint)] mb-1.5">Email</label>
+                <label
+                  htmlFor="testimonial-email"
+                  className="block text-xs text-[var(--color-text-faint)] mb-1.5"
+                >
+                  Email
+                </label>
                 <input
-                  {...register("email")}
+                  id="testimonial-email"
+                  type="email"
+                  autoComplete="email"
+                  {...register("email", {
+                    required: "Email is required",
+                    maxLength: {
+                      value: 254,
+                      message: "Email is too long",
+                    },
+                    pattern: {
+                      value: EMAIL_PATTERN,
+                      message: "Enter a valid email address",
+                    },
+                  })}
                   className="w-full glass rounded-xl px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-[var(--color-accent)] transition-shadow"
                   placeholder="you@example.com"
                 />
-                {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs text-[var(--color-text-faint)] mb-1.5">Your role</label>
+                <label
+                  htmlFor="testimonial-role"
+                  className="block text-xs text-[var(--color-text-faint)] mb-1.5"
+                >
+                  Your role
+                </label>
                 <input
-                  {...register("role")}
+                  id="testimonial-role"
+                  type="text"
+                  {...register("role", {
+                    required: "Role is required",
+                    minLength: {
+                      value: 2,
+                      message: "Role must be at least 2 characters",
+                    },
+                    maxLength: {
+                      value: 100,
+                      message: "Role must be 100 characters or fewer",
+                    },
+                  })}
                   className="w-full glass rounded-xl px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-[var(--color-accent)] transition-shadow"
                   placeholder="e.g. Engineering Manager"
                 />
-                {errors.role && <p className="text-xs text-red-400 mt-1">{errors.role.message}</p>}
+                {errors.role && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {errors.role.message}
+                  </p>
+                )}
               </div>
+
               <div>
-                <label className="block text-xs text-[var(--color-text-faint)] mb-1.5">
+                <label
+                  htmlFor="testimonial-company"
+                  className="block text-xs text-[var(--color-text-faint)] mb-1.5"
+                >
                   Company (optional)
                 </label>
                 <input
-                  {...register("company")}
+                  id="testimonial-company"
+                  type="text"
+                  {...register("company", {
+                    maxLength: {
+                      value: 120,
+                      message: "Company must be 120 characters or fewer",
+                    },
+                  })}
                   className="w-full glass rounded-xl px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-[var(--color-accent)] transition-shadow"
                   placeholder="Where we worked together"
                 />
+                {errors.company && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {errors.company.message}
+                  </p>
+                )}
               </div>
             </div>
 
             <div>
-              <label className="block text-xs text-[var(--color-text-faint)] mb-1.5">Your testimonial</label>
+              <label
+                htmlFor="testimonial-quote"
+                className="block text-xs text-[var(--color-text-faint)] mb-1.5"
+              >
+                Your testimonial
+              </label>
               <textarea
-                {...register("quote")}
+                id="testimonial-quote"
                 rows={5}
+                {...register("quote", {
+                  required: "Testimonial is required",
+                  minLength: {
+                    value: 20,
+                    message: "Please write at least a couple of sentences",
+                  },
+                  maxLength: {
+                    value: 3000,
+                    message: "Testimonial must be 3000 characters or fewer",
+                  },
+                })}
                 className="w-full glass rounded-xl px-4 py-2.5 text-sm text-[var(--color-text-primary)] outline-none focus:ring-1 focus:ring-[var(--color-accent)] transition-shadow resize-none"
                 placeholder="What was it like working with Tebatso?"
               />
-              {errors.quote && <p className="text-xs text-red-400 mt-1">{errors.quote.message}</p>}
+              {errors.quote && (
+                <p className="text-xs text-red-400 mt-1">
+                  {errors.quote.message}
+                </p>
+              )}
             </div>
 
             <button
@@ -141,12 +290,24 @@ export default function SubmitTestimonialPage() {
             >
               <AnimatePresence mode="wait">
                 {status === "idle" && (
-                  <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-2">
+                  <motion.span
+                    key="idle"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-2"
+                  >
                     Submit <Send size={15} />
                   </motion.span>
                 )}
                 {status === "sending" && (
-                  <motion.span key="sending" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-2">
+                  <motion.span
+                    key="sending"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-2"
+                  >
                     Sending <Loader2 size={15} className="animate-spin" />
                   </motion.span>
                 )}
