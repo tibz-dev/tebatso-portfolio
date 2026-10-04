@@ -22,10 +22,14 @@ function getGreeting(hour: number) {
 }
 
 export function Greeting() {
-  const [greeting, setGreeting] = useState("");
+  const [greeting, setGreeting] = useState("Hello");
 
   useEffect(() => {
-    setGreeting(getGreeting(new Date().getHours()));
+    const frame = window.requestAnimationFrame(() => {
+      setGreeting(getGreeting(new Date().getHours()));
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   return (
@@ -36,11 +40,7 @@ export function Greeting() {
       variants={fadeUp}
       className="mb-8 flex items-center gap-4"
     >
-      <Avatar
-        src="/images/profile.jpg"
-        name="Tebatso Seshayi"
-        size={64}
-      />
+      <Avatar src="/images/profile.jpg" name="Tebatso Seshayi" size={64} />
 
       <div className="min-w-0">
         <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-text-primary)]">
@@ -48,7 +48,7 @@ export function Greeting() {
         </p>
 
         <p className="whitespace-nowrap text-sm text-[var(--color-text-muted)]">
-          Software Engineer · South Africa
+          .NET Software Engineer · South Africa
         </p>
       </div>
     </motion.div>
