@@ -28,12 +28,11 @@ export function Experience() {
         </motion.h2>
 
         <div className="relative pl-8">
-          {/* Vertical line */}
           <div className="absolute left-[3px] top-2 bottom-2 w-px bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-glass-border)] to-transparent" />
 
           <div className="space-y-14">
             {EXPERIENCE.map((entry, i) => (
-              <motion.div
+              <motion.article
                 key={entry.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +40,6 @@ export function Experience() {
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative"
               >
-                {/* Timeline dot */}
                 <span className="absolute -left-8 top-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-base)]" />
 
                 <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-faint)] tracking-wide mb-2">
@@ -53,11 +51,23 @@ export function Experience() {
                 <p className="text-sm text-[var(--color-accent-soft)] mb-3">
                   {entry.organization}
                 </p>
-                <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+                <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                   {entry.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <ul className="mt-4 space-y-2">
+                  {entry.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-[var(--color-text-muted)]"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-signal)]" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 flex flex-wrap gap-2">
                   {entry.tags.map((tag) => (
                     <span
                       key={tag}
@@ -67,7 +77,7 @@ export function Experience() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>

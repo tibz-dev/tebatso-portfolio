@@ -16,38 +16,62 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
+
   if (!post) return {};
 
   return {
-    title: `${post.frontmatter.title} — Tebatso Seshayi`,
+    title: post.frontmatter.title,
     description: post.frontmatter.description,
   };
 }
 
 const mdxComponents = {
   h2: (props: React.ComponentProps<"h2">) => (
-    <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text-primary)] mt-10 mb-4" {...props} />
+    <h2
+      className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text-primary)] mt-10 mb-4"
+      {...props}
+    />
   ),
   h3: (props: React.ComponentProps<"h3">) => (
-    <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-text-primary)] mt-8 mb-3" {...props} />
+    <h3
+      className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-text-primary)] mt-8 mb-3"
+      {...props}
+    />
   ),
   p: (props: React.ComponentProps<"p">) => (
-    <p className="text-[var(--color-text-muted)] leading-relaxed mb-4" {...props} />
+    <p
+      className="text-[var(--color-text-muted)] leading-relaxed mb-4"
+      {...props}
+    />
   ),
   ul: (props: React.ComponentProps<"ul">) => (
-    <ul className="list-disc pl-5 space-y-2 mb-4 text-[var(--color-text-muted)]" {...props} />
+    <ul
+      className="list-disc pl-5 space-y-2 mb-4 text-[var(--color-text-muted)]"
+      {...props}
+    />
   ),
   a: (props: React.ComponentProps<"a">) => (
-    <a className="text-[var(--color-accent-soft)] hover:text-[var(--color-signal)] underline transition-colors" {...props} />
+    <a
+      className="text-[var(--color-accent-soft)] hover:text-[var(--color-signal)] underline transition-colors"
+      {...props}
+    />
   ),
   code: (props: React.ComponentProps<"code">) => (
-    <code className="font-[family-name:var(--font-mono)] text-sm bg-white/[0.06] rounded px-1.5 py-0.5" {...props} />
+    <code
+      className="font-[family-name:var(--font-mono)] text-sm bg-white/[0.06] rounded px-1.5 py-0.5"
+      {...props}
+    />
   ),
 };
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
+
   if (!post) notFound();
 
   return (
@@ -76,7 +100,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               day: "numeric",
             })}
           </time>
-          {post.frontmatter.readingTime && <span>· {post.frontmatter.readingTime}</span>}
+          {post.frontmatter.readingTime && (
+            <span>· {post.frontmatter.readingTime}</span>
+          )}
         </div>
 
         <div className="prose-custom">

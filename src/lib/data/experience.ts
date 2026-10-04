@@ -4,6 +4,7 @@ export type ExperienceEntry = {
   organization: string;
   period: string;
   description: string;
+  highlights: string[];
   tags: string[];
 };
 
@@ -13,18 +14,16 @@ export const EXPERIENCE: ExperienceEntry[] = [
     role: "Software Engineer",
     organization: "Restec Pty Ltd.",
     period: "2025 – Present",
-    description: `Contributing to the development and maintenance of enterprise-grade applications using ASP.NET Core (.NET 8), Angular, C#, Entity Framework Core, and SQL Server.
-
-• Develop and maintain RESTful APIs and backend services using ASP.NET Core and C#
-• Build full-stack functionality using Angular and .NET technologies
-• Implement CQRS patterns with MediatR to support scalable and maintainable solutions
-• Design and develop business modules following Clean Architecture principles
-• Configure Entity Framework Core entities, relationships, and database migrations
-• Implement object mapping using AutoMapper
-• Work with SQL Server databases to support application requirements and data integrity
-• Contribute to modular application development through SDK-based integrations and service abstractions
-• Participate in Agile development processes including sprint planning, code reviews, testing, debugging, and Azure DevOps workflows
-• Collaborate with senior engineers to deliver secure, scalable, and maintainable software solutions`,
+    description:
+      "Contributing to enterprise application development across ASP.NET Core and Angular, with a focus on maintainable backend services, business modules, and full-stack delivery.",
+    highlights: [
+      "Develop and maintain RESTful APIs and backend services using ASP.NET Core, .NET 8, and C#.",
+      "Build full-stack features using Angular, TypeScript, and .NET technologies.",
+      "Apply CQRS with MediatR and Clean Architecture patterns to modular business functionality.",
+      "Configure Entity Framework Core entities, relationships, migrations, and SQL Server persistence.",
+      "Use AutoMapper, service abstractions, and SDK integrations to keep application modules maintainable.",
+      "Participate in Agile delivery, code reviews, testing, debugging, and Azure DevOps workflows with senior engineers.",
+    ],
     tags: [
       "ASP.NET Core",
       ".NET 8",

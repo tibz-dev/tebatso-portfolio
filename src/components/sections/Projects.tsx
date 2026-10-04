@@ -14,14 +14,18 @@ export function Projects() {
   const [active, setActive] = useState<Project | null>(null);
   const [filter, setFilter] = useState<FilterValue>("all");
 
-  // Only show filter tabs for categories that actually have a project —
-  // no point offering "Mobile Apps" as a tab if nothing lives there yet.
   const availableCategories = useMemo(
-    () => PROJECT_CATEGORIES.filter((cat) => PROJECTS.some((p) => p.category === cat.id)),
+    () =>
+      PROJECT_CATEGORIES.filter((cat) =>
+        PROJECTS.some((project) => project.category === cat.id)
+      ),
     []
   );
 
-  const filtered = filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
+  const filtered =
+    filter === "all"
+      ? PROJECTS
+      : PROJECTS.filter((project) => project.category === filter);
 
   return (
     <section id="projects" className="relative py-32 px-6">
@@ -41,15 +45,28 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--color-text-primary)] mb-10"
+          className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--color-text-primary)]"
         >
           Selected work.
         </motion.h2>
 
-        {/* Filter tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-4 mb-10 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)]"
+        >
+          Engineering systems come first, followed by web applications and
+          shipped client work. Open any project for the problem, solution,
+          architecture, stack, and next steps.
+        </motion.p>
+
+        <div className="flex flex-wrap gap-2 mb-10" aria-label="Project filters">
           <button
+            type="button"
             onClick={() => setFilter("all")}
+            aria-pressed={filter === "all"}
             className={`rounded-[var(--radius-pill)] px-4 py-2 text-sm transition-colors ${
               filter === "all"
                 ? "bg-[var(--color-accent)] text-white"
@@ -58,12 +75,18 @@ export function Projects() {
           >
             All ({PROJECTS.length})
           </button>
+
           {availableCategories.map((cat) => {
-            const count = PROJECTS.filter((p) => p.category === cat.id).length;
+            const count = PROJECTS.filter(
+              (project) => project.category === cat.id
+            ).length;
+
             return (
               <button
+                type="button"
                 key={cat.id}
                 onClick={() => setFilter(cat.id)}
+                aria-pressed={filter === cat.id}
                 className={`rounded-[var(--radius-pill)] px-4 py-2 text-sm transition-colors ${
                   filter === cat.id
                     ? "bg-[var(--color-accent)] text-white"
@@ -77,8 +100,13 @@ export function Projects() {
         </div>
 
         <motion.div layout className="grid md:grid-cols-2 gap-6">
-          {filtered.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} onOpen={() => setActive(project)} />
+          {filtered.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onOpen={() => setActive(project)}
+            />
           ))}
         </motion.div>
 

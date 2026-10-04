@@ -20,18 +20,17 @@ export function Footer() {
     <footer className="relative border-t border-[var(--color-glass-border)] px-6 py-12">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-10 mb-10">
-          {/* Brand */}
           <div>
             <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-text-primary)]">
               Tebatso Seshayi
             </p>
 
             <p className="text-sm text-[var(--color-text-faint)] mt-2 max-w-xs">
-              Software Engineer building enterprise systems, intelligent digital experiences, scalable cloud applications, and modern software solutions engineered for performance, reliability, and long-term impact.
+              .NET Software Engineer and Full-Stack Developer building backend
+              APIs, enterprise systems, and modern web applications.
             </p>
           </div>
 
-          {/* Navigation */}
           <div className="flex flex-col sm:flex-row gap-10">
             <div>
               <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-text-faint)] mb-3">
@@ -52,7 +51,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Socials */}
             {SOCIAL_LINKS.length > 0 && (
               <div>
                 <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-text-faint)] mb-3">
@@ -60,25 +58,28 @@ export function Footer() {
                 </p>
 
                 <ul className="space-y-2">
-                  {SOCIAL_LINKS.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
+                  {SOCIAL_LINKS.map((link) => {
+                    const isExternal = link.href.startsWith("http");
+
+                    return (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          target={isExternal ? "_blank" : undefined}
+                          rel={isExternal ? "noopener noreferrer" : undefined}
+                          className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
           </div>
         </div>
 
-        {/* Bottom */}
         <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-6 pt-8 border-t border-[var(--color-glass-border)]">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 justify-center sm:justify-start text-xs text-[var(--color-text-faint)]">
             <span>© {year} Tebatso Seshayi. Built by Tebatso Seshayi.</span>
@@ -97,6 +98,7 @@ export function Footer() {
           </div>
 
           <motion.button
+            type="button"
             onClick={scrollToTop}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}

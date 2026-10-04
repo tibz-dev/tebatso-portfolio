@@ -13,7 +13,7 @@ export function BookCall() {
     return (
       <div className="glass rounded-[var(--radius-glass)] overflow-hidden h-[720px]">
         <Cal
-          calLink={CONTACT_INFO.calUsername}
+          calLink={CONTACT_INFO.calLink}
           style={{ width: "100%", height: "100%" }}
           config={{ theme: "dark" }}
         />
@@ -23,6 +23,7 @@ export function BookCall() {
 
   return (
     <motion.button
+      type="button"
       onClick={() => setOpen(true)}
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.99 }}
@@ -39,7 +40,9 @@ export function BookCall() {
           Prefer to talk it through? Grab a slot on my calendar directly.
         </p>
       </div>
-      <span className="text-sm text-[var(--color-accent-soft)] mt-6">Open scheduler →</span>
+      <span className="text-sm text-[var(--color-accent-soft)] mt-6">
+        Open scheduler →
+      </span>
     </motion.button>
   );
 }

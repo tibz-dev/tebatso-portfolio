@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X,ExternalLink } from "lucide-react";
-import { FaGithub} from "react-icons/fa";
+import { X, ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Project } from "@/types";
@@ -29,10 +30,64 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-export function ProjectModal({
-  project,
-  onClose,
-}: ProjectModalProps) {
+export function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!project) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onCloseRef.current();
+        return;
+      }
+
+      if (event.key !== "Tab" || !modalRef.current) return;
+
+      const focusable = Array.from(
+        modalRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => !element.hasAttribute("disabled"));
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
+    };
+  }, [project]);
+
+  const titleId = project ? `project-${project.id}-title` : undefined;
+
   return (
     <AnimatePresence>
       {project && (
@@ -43,9 +98,14 @@ export function ProjectModal({
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
+            aria-hidden="true"
           />
 
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -57,6 +117,8 @@ export function ProjectModal({
           >
             <div className="sticky top-0 z-10 flex justify-end bg-[var(--color-base)]/60 p-4 backdrop-blur-md">
               <button
+                ref={closeButtonRef}
+                type="button"
                 onClick={onClose}
                 aria-label="Close project details"
                 className="glass rounded-full p-2 transition-colors hover:bg-white/10"
@@ -67,7 +129,18 @@ export function ProjectModal({
 
             <div className="-mt-8 mx-auto max-w-3xl space-y-10 px-6 pb-16 md:px-12">
               <div>
-                <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text-primary)] md:text-3xl">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
+                  {project.status && (
+                    <span className="rounded-full border border-[var(--color-glass-border)] px-2.5 py-1 font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-faint)]">
+                      {project.status}
+                    </span>
+                  )}
+                </div>
+
+                <h2
+                  id={titleId}
+                  className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text-primary)] md:text-3xl"
+                >
                   {project.title}
                 </h2>
 
@@ -75,7 +148,7 @@ export function ProjectModal({
                   {project.tagline}
                 </p>
 
-                <div className="mt-5 flex items-center gap-4">
+                <div className="mt-5 flex flex-wrap items-center gap-4">
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
@@ -158,11 +231,11 @@ export function ProjectModal({
               {project.gallery && project.gallery.length > 0 && (
                 <ModalSection label="Gallery">
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {project.gallery.map((src) => (
+                    {project.gallery.map((src, index) => (
                       <Image
                         key={src}
                         src={src}
-                        alt={`${project.title} screenshot`}
+                        alt={`${project.title} screenshot ${index + 1}`}
                         width={600}
                         height={400}
                         className="rounded-xl w-full h-auto"
