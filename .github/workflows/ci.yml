@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - portfolio-fixes-2026-10-04
   pull_request:
     branches:
       - master
