@@ -1,9 +1,9 @@
 export type ProjectCategory = "web-app" | "website" | "mobile-app" | "enterprise-system";
 
 export const PROJECT_CATEGORIES: { id: ProjectCategory; label: string }[] = [
-  { id: "enterprise-system", label: "Enterprise Systems" },
+  { id: "enterprise-system", label: "Engineering Systems" },
   { id: "web-app", label: "Web Applications" },
-  { id: "website", label: "Websites" },
+  { id: "website", label: "Client Websites" },
   { id: "mobile-app", label: "Mobile Apps" },
 ];
 
@@ -12,6 +12,7 @@ export type Project = {
   category: ProjectCategory;
   title: string;
   tagline: string;
+  status?: string;
   coverImage?: string;
   overview: string;
   problem: string;
