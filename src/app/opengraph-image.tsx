@@ -34,7 +34,7 @@ export default function OpengraphImage() {
             marginBottom: 24,
           }}
         >
-          Software Engineer · South Africa
+          .NET Software Engineer · South Africa
         </div>
 
         <div
@@ -58,7 +58,7 @@ export default function OpengraphImage() {
             maxWidth: 900,
           }}
         >
-          Building enterprise-grade systems and AI-powered software.
+          Backend APIs, enterprise systems, and modern full-stack applications.
         </div>
       </div>
     ),
