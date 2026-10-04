@@ -27,19 +27,16 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
     >
-      {/* Background Architecture */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end">
         <div className="w-full max-w-3xl translate-x-1/4">
           <ArchitectureGraph />
         </div>
       </div>
 
-      {/* Ambient Glow */}
       <div
         className="pointer-events-none absolute -left-1/4 -top-1/4 h-[600px] w-[600px] rounded-full opacity-20 blur-[120px]"
         style={{
-          background:
-            "radial-gradient(circle, #5b63d3, transparent 70%)",
+          background: "radial-gradient(circle, #5b63d3, transparent 70%)",
         }}
       />
 
@@ -61,12 +58,12 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-muted)]"
+          className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-muted)]"
         >
-          I build enterprise-grade systems and AI-powered software—from clean
-          architecture backends to modern, performant user interfaces.
-          Currently completing a BSc in Information Technology at North-West
-          University.
+          .NET Software Engineer and Full-Stack Developer building backend APIs,
+          enterprise systems, and modern web applications with C#, ASP.NET
+          Core, Angular, TypeScript, and SQL. Currently completing a BSc in
+          Information Technology at North-West University.
         </motion.p>
 
         <motion.div
