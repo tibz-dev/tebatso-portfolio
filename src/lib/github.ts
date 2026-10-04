@@ -31,11 +31,33 @@ export type GitHubProfile = {
   totalContributions: number;
 };
 
+type GraphQLContributionDay = {
+  date: string;
+  contributionCount: number;
+};
+
+type GraphQLContributionWeek = {
+  contributionDays: GraphQLContributionDay[];
+};
+
+type GraphQLContributionResponse = {
+  user: {
+    contributionsCollection: {
+      contributionCalendar: {
+        totalContributions: number;
+        weeks: GraphQLContributionWeek[];
+      };
+    };
+  };
+};
+
 export async function getGitHubProfile(): Promise<GitHubProfile | null> {
   if (!USERNAME) return null;
 
   try {
-    const { data: user } = await octokit.rest.users.getByUsername({ username: USERNAME });
+    const { data: user } = await octokit.rest.users.getByUsername({
+      username: USERNAME,
+    });
 
     const { data: repoData } = await octokit.rest.repos.listForUser({
       username: USERNAME,
@@ -44,48 +66,55 @@ export async function getGitHubProfile(): Promise<GitHubProfile | null> {
     });
 
     const repos: RepoSummary[] = repoData
-      .filter((r) => !r.fork)
-      .map((r) => ({
-        id: r.id,
-        name: r.name,
-        description: r.description,
-        url: r.html_url,
-        stars: r.stargazers_count ?? 0,
-        forks: r.forks_count ?? 0,
-        language: r.language ?? null,
-        updatedAt: r.updated_at ?? new Date().toISOString(),
+      .filter((repo) => !repo.fork)
+      .map((repo) => ({
+        id: repo.id,
+        name: repo.name,
+        description: repo.description,
+        url: repo.html_url,
+        stars: repo.stargazers_count ?? 0,
+        forks: repo.forks_count ?? 0,
+        language: repo.language ?? null,
+        updatedAt: repo.updated_at ?? new Date().toISOString(),
       }))
       .sort((a, b) => b.stars - a.stars);
 
-    const totalStars = repos.reduce((sum, r) => sum + r.stars, 0);
+    const totalStars = repos.reduce((sum, repo) => sum + repo.stars, 0);
 
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
-    const graphqlResponse: any = await octokit.graphql(
-      `
-        query ($username: String!, $from: DateTime!) {
-          user(login: $username) {
-            contributionsCollection(from: $from) {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    date
-                    contributionCount
+    const graphqlResponse =
+      await octokit.graphql<GraphQLContributionResponse>(
+        `
+          query ($username: String!, $from: DateTime!) {
+            user(login: $username) {
+              contributionsCollection(from: $from) {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
                   }
                 }
               }
             }
           }
-        }
-      `,
-      { username: USERNAME, from: oneYearAgo.toISOString() }
-    );
+        `,
+        { username: USERNAME, from: oneYearAgo.toISOString() }
+      );
 
-    const calendar = graphqlResponse.user.contributionsCollection.contributionCalendar;
-    const contributionDays: ContributionDay[] = calendar.weeks.flatMap((w: any) =>
-      w.contributionDays.map((d: any) => ({ date: d.date, count: d.contributionCount }))
+    const calendar =
+      graphqlResponse.user.contributionsCollection.contributionCalendar;
+
+    const contributionDays: ContributionDay[] = calendar.weeks.flatMap(
+      (week) =>
+        week.contributionDays.map((day) => ({
+          date: day.date,
+          count: day.contributionCount,
+        }))
     );
 
     return {
