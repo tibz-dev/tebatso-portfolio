@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -40,38 +41,35 @@ export function FloatingNav() {
           scrolled ? "px-4 py-2" : "px-5 py-2.5"
         )}
       >
-        {/* Logo */}
-        <a
+        <Link
           href="/#home"
           className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-tight text-[var(--color-text-primary)] shrink-0 mr-2"
         >
           TS
-        </a>
+        </Link>
 
-        {/* Desktop Navigation */}
         <ul className="hidden lg:flex items-center gap-0.5">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="whitespace-nowrap px-2.5 py-1.5 rounded-[var(--radius-pill)] text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        {/* Resume Button */}
-        <a
+        <Link
           href="/resume"
           className="hidden lg:inline-flex items-center whitespace-nowrap rounded-[var(--radius-pill)] bg-[var(--color-accent)] px-4 py-1.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-soft)] transition-colors ml-2 shrink-0"
         >
           CV
-        </a>
+        </Link>
 
-        {/* Mobile Menu Button */}
         <button
+          type="button"
           onClick={() => setOpen((o) => !o)}
           className="lg:hidden flex flex-col gap-1 p-2 ml-auto"
           aria-label="Toggle menu"
@@ -94,23 +92,24 @@ export function FloatingNav() {
             <ul className="flex flex-col p-2">
               {LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className="block px-4 py-3 rounded-xl text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-white/5 transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
 
               <li>
-                <a
+                <Link
                   href="/resume"
+                  onClick={() => setOpen(false)}
                   className="block px-4 py-3 rounded-xl text-sm font-medium text-[var(--color-accent-soft)]"
                 >
                   Resume
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
