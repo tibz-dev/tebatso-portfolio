@@ -43,7 +43,7 @@ export function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
         {project.coverImage ? (
           <Image
             src={project.coverImage}
-            alt=""
+            alt={`${project.title} website or application preview`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
@@ -88,6 +88,15 @@ export function ProjectCard({ project, index, onOpen }: ProjectCardProps) {
         <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
           {project.tagline}
         </p>
+
+        <div className="mt-4">
+          <p className="mb-1 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-wider text-[var(--color-accent-soft)]">
+            Overview
+          </p>
+          <p className="line-clamp-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+            {project.overview}
+          </p>
+        </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.technologies.slice(0, 4).map((tech) => (
