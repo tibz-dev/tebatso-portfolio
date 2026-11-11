@@ -57,9 +57,9 @@ export function Projects() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-4 mb-10 max-w-2xl text-sm leading-relaxed text-[var(--color-text-muted)]"
         >
-          Engineering systems come first, followed by web applications and
-          shipped client work. Open any project for the problem, solution,
-          architecture, stack, and next steps.
+          Explore engineering systems, web applications, and client websites.
+          Every project includes an overview, the problem it addresses, the
+          solution, its architecture, and relevant live or source-code links.
         </motion.p>
 
         <div className="flex flex-wrap gap-2 mb-10" aria-label="Project filters">
