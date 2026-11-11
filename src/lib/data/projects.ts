@@ -8,6 +8,7 @@ export const PROJECTS: Project[] = [
     tagline:
       "A full-stack business management SaaS for creating quotes, issuing invoices, recording payments, and managing customers.",
     status: "Live",
+    coverImage: "/images/quotesnap.png",
     overview:
       "QuoteSnap is a full-stack SaaS platform that helps small businesses manage their sales-to-payment workflow in one place. It brings together business profiles, customers, service and catalogue items, quotations, invoices, receipts, payment tracking, subscription plans, and email delivery. The product combines a React web application with an ASP.NET Core 8 API.",
     problem:
