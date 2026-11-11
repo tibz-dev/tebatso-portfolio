@@ -333,23 +333,25 @@ export const PROJECTS: Project[] = [
       "Bulk tissue and sanitary product supply for homes and businesses.",
     status: "Live",
     overview:
-      "A business website for a Pretoria-based supplier of tissue and sanitary products, using package-based product presentation and WhatsApp-driven ordering.",
+      "A redesigned business website for All Things Hygiene, a South African supplier of toilet tissue, serviettes, kitchen towels, and bulk hygiene products for homes, offices, and businesses. The site presents product ranges, company information, pricing, gallery content, and clear quotation enquiry paths.",
     problem:
-      "The supplier needed a professional storefront for bulk and wholesale packages without introducing the operational complexity of a full online checkout.",
+      "Customers need a clear way to understand the available hygiene products and request supply quotations, while the business needs a professional online presence for both retail and bulk enquiries.",
     solution:
-      "Built a package-based business site with a simple ordering journey and WhatsApp deep links that move customers from browsing to direct order enquiries.",
+      "Built a modern multi-page website that organizes the company's product ranges, services, pricing, gallery, referrals, careers, and contact information into a clearer customer journey with quotation enquiry paths.",
     architecture:
-      "Lightweight multi-page frontend built with HTML, CSS, and JavaScript, optimized for responsive browsing and direct WhatsApp ordering.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      "Responsive multi-page website built with HTML, CSS, and JavaScript, supported by a lightweight PHP contact handler and structured static assets. Dedicated pages keep product discovery, company information, and enquiries easy to navigate.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "Responsive Design"],
     features: [
-      "Starter, business, and bulk product packages",
-      "WhatsApp-based ordering",
-      "Four-step order process explainer",
-      "About, pricing, and contact pages",
+      "Toilet tissue, serviettes, kitchen towel, and bulk hygiene product presentation",
+      "Dedicated products, services, and pricing pages",
+      "Company gallery and referral information",
+      "Careers and contact pages",
+      "Quotation enquiry paths",
+      "Privacy, terms, delivery, returns, and cookie information",
     ],
     coverImage: "/images/allthingshygiene.png",
     gallery: [],
-    liveUrl: "https://www.allthingshygiene.com/",
+    liveUrl: "https://www.allthingshygiene.co.za/",
     futureImprovements: [],
   },
 ];
