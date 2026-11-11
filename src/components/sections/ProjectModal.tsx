@@ -169,11 +169,23 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       className="flex items-center gap-1.5 rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm text-white transition-colors hover:bg-[var(--color-accent-soft)]"
                     >
                       <ExternalLink size={14} />
-                      Live Demo
+                      Live Project
                     </a>
                   )}
                 </div>
               </div>
+
+              {project.coverImage && (
+                <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--color-glass-border)]">
+                  <Image
+                    src={project.coverImage}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
               <ModalSection label="Overview">
                 <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
