@@ -276,22 +276,23 @@ export const PROJECTS: Project[] = [
     id: "makh-safety",
     category: "website",
     title: "MAKH Safety Solutions",
-    tagline: "Occupational health and safety consulting, presented clearly online.",
+    tagline: "Practical occupational health and safety systems for South African workplaces.",
     status: "Live",
     overview:
-      "A business website for MAKH Safety Solutions, an occupational health and safety consulting practice serving South African businesses.",
+      "A redesigned business website for MAKH Safety Solutions, presenting occupational health and safety consulting through compliance documentation, on-site support, and practical safety systems for South African workplaces.",
     problem:
-      "The business needed a credible digital presence that clearly communicates workplace safety and compliance services to prospective clients.",
+      "Businesses need to meet workplace safety obligations and compliance requirements while keeping documentation practical and site teams supported.",
     solution:
-      "Built a responsive business website focused on service clarity, trust, and straightforward client enquiries.",
+      "Built a responsive marketing website that explains the consulting services, compliance focus, on-site support, and consultation enquiry journey.",
     architecture:
       "Responsive React/Next.js marketing site with reusable content sections, optimized static assets, and production deployment for a lightweight client-facing experience.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Responsive Design"],
     features: [
-      "OHS consulting service presentation",
-      "Compliance-focused business positioning",
-      "Responsive mobile-first layout",
-      "Clear enquiry paths",
+      "Occupational Health and Safety Act support",
+      "Construction Regulations compliance support",
+      "ISO 45001-aligned safety systems",
+      "Site-based compliance support",
+      "Consultation enquiry path",
     ],
     coverImage: "/images/makhsafety.png",
     gallery: [],
@@ -303,22 +304,23 @@ export const PROJECTS: Project[] = [
     category: "website",
     title: "Nolly M Wayleave Services",
     tagline:
-      "Wayleave approvals and construction project services across South Africa.",
+      "Wayleave consulting and authority coordination for telecommunications and utility infrastructure.",
     status: "Live",
     overview:
-      "A business website for Nolly M Wayleave Services, presenting wayleave, construction, and project execution services across South Africa.",
+      "A redesigned website for Nolly M Wayleave Services, explaining a wayleave workflow from project briefing and authority liaison through site coordination for telecommunications and utility infrastructure.",
     problem:
-      "Infrastructure clients need to understand a provider's wayleave and project capabilities quickly before beginning an enquiry.",
+      "Infrastructure projects can stall when wayleave applications, permissions, authority coordination, and site access are not clearly managed.",
     solution:
-      "Built a responsive company website that organizes services, positioning, and enquiry information into a clear customer journey.",
+      "Built a responsive company website that explains the wayleave consulting process, organizes service information, and gives infrastructure clients a direct route to discuss a project.",
     architecture:
       "Responsive React/Next.js marketing site composed from reusable sections and optimized for straightforward service discovery and contact conversion.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Responsive Design"],
     features: [
-      "Wayleave and construction service overview",
-      "Compliance-oriented positioning",
-      "Responsive layout",
-      "Direct enquiry paths",
+      "Wayleave application support",
+      "Authority liaison",
+      "Site coordination",
+      "Telecommunications and utility infrastructure focus",
+      "FAQs and project enquiry path",
     ],
     coverImage: "/images/nollymwayleave.png",
     gallery: [],
