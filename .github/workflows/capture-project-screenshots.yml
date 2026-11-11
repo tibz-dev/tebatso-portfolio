@@ -64,7 +64,7 @@ jobs:
           capture "https://devsolutionsza.shop/" "public/images/devsolutionsshop.png"
           capture "https://www.makhsafety.co.za/" "public/images/makhsafety.png"
           capture "https://www.nollymwayleave.co.za/" "public/images/nollymwayleave.png"
-          capture "https://allthingshygiene.com/" "public/images/allthingshygiene.png"
+          capture "https://www.allthingshygiene.co.za/" "public/images/allthingshygiene.png"
 
       - name: Commit refreshed screenshots
         shell: bash
